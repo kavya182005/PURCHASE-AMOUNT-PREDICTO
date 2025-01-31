@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Trends Predictor</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(to right, #4facfe, #00f2fe);
+            text-align: center;
+            padding: 50px;
+            color: #fff;
+        }
+
+        /* Card Container */
+        .container {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin: auto;
+            text-align: left;
+        }
+
+        /* Title */
+        h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        /* Form Styles */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            font-weight: bold;
+            margin: 8px 0 3px;
+            color: #333;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        /* Buttons */
+        .btn {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: 0.3s ease-in-out;
+        }
+
+        .predict-btn {
+            background: #28a745;
+            color: white;
+        }
+
+        .predict-btn:hover {
+            background: #218838;
+        }
+
+        .back-btn {
+            background: #007bff;
+            color: white;
+            text-align: center;
+            display: block;
+            text-decoration: none;
+            padding: 12px;
+            margin-top: 10px;
+        }
+
+        .back-btn:hover {
+            background: #0056b3;
+        }
+
+        /* Prediction Result */
+        .prediction {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            text-align: center;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Enter Shopping Details</h2>
+        <form action="/predict" method="post">
+            {% for column in feature_columns %}
+                <label for="{{ column }}">{{ column }}:</label>
+                <input type="text" name="{{ column }}" required>
+            {% endfor %}
+            <button type="submit" class="btn predict-btn">Predict</button>
+        </form>
+
+        <div class="prediction">
+            <h3>{{ prediction_text }}</h3>
+        </div>
+
+        <a href="/" class="btn back-btn">Back to Home</a>
+    </div>
+
+</body>
+</html>
